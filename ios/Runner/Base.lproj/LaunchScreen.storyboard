@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ydg-fD-yQy"/>
+                        <viewControllerLayoutGuide type="bottom" id="xbc-2k-c8Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
+                                <rect key="frame" x="206.5" y="447.5" width="1" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FondoSplashCompleto" translatesAutoresizingMaskIntoConstraints="NO" id="sq8-gH-xiU">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1a2-6s-vTC"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4X2-HB-R7a"/>
+                            <constraint firstItem="sq8-gH-xiU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6qW-BY-ium"/>
+                            <constraint firstAttribute="trailing" secondItem="sq8-gH-xiU" secondAttribute="trailing" id="AGM-dK-MSO"/>
+                            <constraint firstItem="sq8-gH-xiU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="PAQ-F9-HLL"/>
+                            <constraint firstItem="sq8-gH-xiU" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="TMP-wn-LCN"/>
+                            <constraint firstAttribute="bottom" secondItem="sq8-gH-xiU" secondAttribute="bottom" id="k0e-91-KfW"/>
+                            <constraint firstItem="sq8-gH-xiU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zC1-hu-CfD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="82.5" y="335.91549295774649"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="FondoSplashCompleto" width="365" height="667"/>
+        <image name="LaunchImage" width="0.5" height="0.5"/>
+    </resources>
+</document>
