@@ -99,12 +99,12 @@ class Data {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     title = json['title'];
-    copete = json['copete'];
-    image = json['image'];
-    tags = json['tags'];
+    copete = json['copete'] ?? '';
+    image = json['image'] ?? '';
+    tags = json['tags'] ?? '';
     idTipoActivity = json['id_tipo_activity'];
-    description = json['description'];
-    link = json['link'];
+    description = json['description'] ?? '';
+    link = json['link'] ?? '';
     activo = json['activo'];
     fav = json['fav'];
   }

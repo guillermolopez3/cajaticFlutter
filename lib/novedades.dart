@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'utils/const.dart';
+import 'utils/constantes.dart';
 import 'models/post_model.dart';
 import 'dart:async';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -115,7 +115,7 @@ class _NovedadesState extends State<Novedades>{
             Padding(
               padding: const EdgeInsets.only(left:8.0,right: 8.0),
               child: Text(
-                data.tags,
+                data.tags ?? '',
                 style: TextStyle(color: color_accent, fontSize: 14.0),
               ),
             )
@@ -130,19 +130,38 @@ class _NovedadesState extends State<Novedades>{
 
 }
 
-
-class Detail extends StatelessWidget{
+class Detail extends StatefulWidget{
   final Data data;
 
   Detail(this.data);
 
   @override
+  _Detail createState() => _Detail();
+
+}
+
+class _Detail extends State<Detail>{
+  Completer<WebViewController> _controller = Completer<WebViewController>();
+
+
+
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: WebView(
-        initialUrl: 'www.google.com',
-        javascriptMode: JavascriptMode.unrestricted,
+      body: Container(
+        padding: EdgeInsets.only(top: 20.0),
+        child: WebView(
+          initialUrl: '$URL_PDF_VIEW_MINISTERIO${widget.data.link}',
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController wbController){
+            _controller.complete(wbController);
+
+          },
+          onPageFinished: (String complete){
+            print(complete);
+          },
+        ),
       )
     );
   }

@@ -44,6 +44,10 @@ flutter:
    - assets/img/aprender_conectados.png
    - assets/img/espacio_didactico.png
    - assets/img/novedades.png
+   - assets/img/ic_inicial.png
+   - assets/img/ic_primaria.png
+   - assets/img/ic_secundario.png
+   - assets/img/ic_superior.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
