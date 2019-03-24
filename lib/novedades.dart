@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'utils/const.dart';
 import 'models/post_model.dart';
+import 'dart:async';
+import 'package:webview_flutter/webview_flutter.dart';
 
 const URL = "${URL_BASE}$URL_NOVEDADES";
 
@@ -29,6 +31,28 @@ class _NovedadesState extends State<Novedades>{
     });
   }
 
+  Future<List<Data>> _getPost() async{
+    var response = await http.get(URL);
+    var decodeJson = jsonDecode(response.body);
+    post = Post.fromJson(decodeJson);
+    return post.data;
+  }
+
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//        appBar: AppBar(
+//          title: Text('Novedades', style: TextStyle(color: Colors.white),),
+//          iconTheme: IconThemeData(color: Colors.white),
+//        ),
+//        body: ListView(
+//          children: post == null
+//            ? <Widget>[Center(child: CircularProgressIndicator(),)]
+//           : post.data.map((item)=>Padding(padding: EdgeInsets.only(top: 10.0,bottom: 10.0), child: _listItem(item),)).toList(),
+//        )
+//    );
+//  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,52 +60,91 @@ class _NovedadesState extends State<Novedades>{
           title: Text('Novedades', style: TextStyle(color: Colors.white),),
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        body: ListView(
-          children: post == null
-            ? <Widget>[Center(child: CircularProgressIndicator(),)]
-           : post.data.map((item)=>Padding(padding: EdgeInsets.only(top: 10.0,bottom: 10.0), child: _listItem(item),)).toList(),
+        body: Container(
+          child: FutureBuilder(
+              future: _getPost(),
+              builder: (context,snapshot){
+                if(snapshot.data == null){
+                  return Center(child: CircularProgressIndicator());
+                }else{
+                 return _lista(snapshot);
+                }
+              }
+          ),
         )
     );
   }
 
-  Widget _listItem(Data data) => Container(
-    height: 250.0,
-    child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      elevation: 2.0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: 150.0,
-            child: Image.network("${URL_IMG}${data.image}"),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Text(
-              data.title,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+  Widget _lista(AsyncSnapshot<List<Data>> snapshot)=> ListView.builder(
+      itemCount: snapshot.data.length,
+      itemBuilder: (BuildContext context, int index){
+        return _listItem(snapshot.data[index]);
+      }
+  );
+
+  Widget _listItem(Data data) => InkWell(
+    splashColor: Colors.grey[800],
+    child: Container(
+      height: 250.0,
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        elevation: 2.0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 150.0,
+              child: Image.network("${URL_IMG}${data.image}"),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
-            child: Container(
-              height: 1.0,
-              decoration: BoxDecoration(color: Colors.grey[300]),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Text(
+                data.title,
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left:8.0,right: 8.0),
-            child: Text(
-              data.tags,
-              style: TextStyle(color: color_accent, fontSize: 14.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
+              child: Container(
+                height: 1.0,
+                decoration: BoxDecoration(color: Colors.grey[300]),
+              ),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left:8.0,right: 8.0),
+              child: Text(
+                data.tags,
+                style: TextStyle(color: color_accent, fontSize: 14.0),
+              ),
+            )
+          ],
+        ),
       ),
     ),
+    onTap: (){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> Detail(data)));
+    },
   );
+
+}
+
+
+class Detail extends StatelessWidget{
+  final Data data;
+
+  Detail(this.data);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      body: WebView(
+        initialUrl: 'www.google.com',
+        javascriptMode: JavascriptMode.unrestricted,
+      )
+    );
+  }
 
 }
