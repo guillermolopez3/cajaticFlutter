@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'models/post_model.dart';
 import 'dart:async';
+import 'detalle_web.dart';
 
 class Espacios extends StatefulWidget{
   @override
@@ -106,7 +107,10 @@ class _Espacios extends State<Espacios>{
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
-              child: Image.network("${URL_IMG}${data.image}", height: 150.0, fit: BoxFit.fill,),
+              child: Hero(
+                tag: data.image,
+                child: Image.network("$URL_IMG${data.image}", height: 150.0, fit: BoxFit.fill,),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(5.0),
@@ -145,7 +149,7 @@ class _Espacios extends State<Espacios>{
       ),
     ),
     onTap: (){
-      //Navigator.push(context, MaterialPageRoute(builder: (context)=> Detail(data)));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> DetalleWeb(data)));
     },
   );
 }

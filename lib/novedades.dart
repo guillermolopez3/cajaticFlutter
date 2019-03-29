@@ -149,19 +149,18 @@ class _Detail extends State<Detail>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(top: 20.0),
-        child: WebView(
-          initialUrl: '$URL_PDF_VIEW_MINISTERIO${widget.data.link}',
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController wbController){
-            _controller.complete(wbController);
+      body: SafeArea(
+          child: WebView(
+            initialUrl: '$URL_PDF_VIEW_MINISTERIO${widget.data.link}',
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController wbController){
+              _controller.complete(wbController);
 
-          },
-          onPageFinished: (String complete){
-            print(complete);
-          },
-        ),
+            },
+            onPageFinished: (String complete){
+              print(complete);
+            },
+          )
       )
     );
   }

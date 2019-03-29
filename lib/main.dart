@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
- final color_primario = const Color(0xFF00b0ed);
- final color_primary_dart = const Color(0xFF007297);
- final color_accent = const Color(0xFFFFA726);
+const color_primario = const Color(0xFF00b0ed);
+const color_primary_dark = const Color(0xFF007297);
+const color_accent = const Color(0xFFFFA726);
 
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //color al status bar
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+          statusBarColor: color_primary_dark),
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColorBrightness: Brightness.dark,
         primaryColor: color_primario,
-        primaryColorDark: color_primary_dart,
-        accentColor: color_accent
+        primaryColorDark: color_primary_dark,
       ),
       home: Home(),
     );
