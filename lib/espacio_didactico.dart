@@ -5,6 +5,9 @@ import 'dart:convert';
 import 'models/post_model.dart';
 import 'dart:async';
 import 'detalle_web.dart';
+import 'webview.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'utils/constantes.dart';
 
 class Espacios extends StatefulWidget{
   @override
@@ -149,8 +152,34 @@ class _Espacios extends State<Espacios>{
       ),
     ),
     onTap: (){
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> DetalleWeb(data)));
+      //Navigator.push(context, MaterialPageRoute(builder: (context)=> DetalleWeb(data)));
+      _definirRuta(data);
     },
   );
+
+  void _definirRuta(Data data){
+    int tipo_activity = data.idTipoActivity;
+    switch(tipo_activity){
+      case 1:
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> DetalleWeb(data))); //una pag web comun
+        break;
+      case 2:
+        //Navigator.push(context, MaterialPageRoute(builder: (context)=> MyWebView(data))); //Video
+        _launchURL(data.link);
+        break;
+      case 4:
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> MyWebView(data)));
+        break;
+    }
+  }
+
+  _launchURL(String link) async {
+    final url = Uri.encodeFull('${URL_YOUTUBE}$link');
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }
 

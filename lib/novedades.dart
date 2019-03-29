@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'utils/constantes.dart';
 import 'models/post_model.dart';
 import 'dart:async';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'webview.dart';
 
 const URL = "${URL_BASE}$URL_NOVEDADES";
 
@@ -124,45 +124,8 @@ class _NovedadesState extends State<Novedades>{
       ),
     ),
     onTap: (){
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> Detail(data)));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> MyWebView(data)));
     },
   );
-
-}
-
-class Detail extends StatefulWidget{
-  final Data data;
-
-  Detail(this.data);
-
-  @override
-  _Detail createState() => _Detail();
-
-}
-
-class _Detail extends State<Detail>{
-  Completer<WebViewController> _controller = Completer<WebViewController>();
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      body: SafeArea(
-          child: WebView(
-            initialUrl: '$URL_PDF_VIEW_MINISTERIO${widget.data.link}',
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (WebViewController wbController){
-              _controller.complete(wbController);
-
-            },
-            onPageFinished: (String complete){
-              print(complete);
-            },
-          )
-      )
-    );
-  }
 
 }

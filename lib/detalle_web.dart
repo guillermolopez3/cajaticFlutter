@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/post_model.dart';
 import 'utils/constantes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetalleWeb extends StatefulWidget{
   Data data;
@@ -69,7 +70,10 @@ class _DetalleWeb extends State<DetalleWeb>{
       RaisedButton(
         color: color_primario,
         child: Text('Ver mas sobre el recurso',style: TextStyle(color: Colors.white),),
-          onPressed: (){}
+          onPressed: (){
+            //Navigator.push(context, MaterialPageRoute(builder: (context)=> MyWebView(data)));
+            _launchURL();
+          }
           )
     ],
   );
@@ -81,4 +85,14 @@ class _DetalleWeb extends State<DetalleWeb>{
         style: txtStyle
     )
   );
+
+  _launchURL() async {
+    final url = Uri.encodeFull(widget.data.link);
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 }
