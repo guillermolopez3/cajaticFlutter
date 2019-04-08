@@ -9,7 +9,7 @@ const URL_PDF_VIEW_MINISTERIO = "http://www.igualdadycalidadcba.gov.ar/CajaTIC/j
 const URL_PDF_VIEW = "http://www.igualdadycalidadcba.gov.ar/CajaTIC/js/web/viewer.html?file="; //cuando el pdf es de una web cualquiera
 
 const URL_ESPACIO_DIDACTICO = 'getPostEspacioDidaConFav?';
-
+const URL_APRENDER_CONECTADOS = 'getAprenderConectadosConFav?page=1';
 
 
 //Colores

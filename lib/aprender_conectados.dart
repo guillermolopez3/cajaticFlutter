@@ -1,87 +1,74 @@
 import 'package:flutter/material.dart';
 import 'utils/constantes.dart';
+import 'models/post_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'models/post_model.dart';
 import 'dart:async';
 import 'detalle_web.dart';
 import 'webview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Espacios extends StatefulWidget{
+
+const URL = "${URL_BASE}$URL_APRENDER_CONECTADOS";
+
+class AprenderConectados extends StatefulWidget {
   @override
-  _Espacios createState()=> _Espacios();
+  _AprenderConectadosState createState() => _AprenderConectadosState();
 }
 
-class _Espacios extends State<Espacios>{
-  int _selectedIndex = 0;
+class _AprenderConectadosState extends State<AprenderConectados> {
+  int _selectedIndex = 1;
   String URL;
   Post post;
 
-
   @override
   void initState() {
-    print('init state');
-    URL = "$URL_BASE${URL_ESPACIO_DIDACTICO}level=${_selectedIndex + 2}";
+    //URL = "$URL_BASE${URL_ESPACIO_DIDACTICO}level=${_selectedIndex}";
+    URL = "$URL_BASE${URL_APRENDER_CONECTADOS}&seccion=";
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            'Recursos Didácticos', style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      body: _container(),
-      bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            _bottomNavItem('assets/img/ic_inicial.png', 'Inicial'),
-            _bottomNavItem('assets/img/ic_primaria.png', 'Primaria'),
-            _bottomNavItem('assets/img/ic_secundario.png', 'Secundaria'),
-            _bottomNavItem('assets/img/ic_superior.png', 'Superior'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.accessibility, color: Colors.black,),
-                title: Text('Especial', style: TextStyle(color: Colors.black))
-            )
-          ],
-        currentIndex: _selectedIndex,
-        fixedColor: Colors.deepPurple,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+              tabs: [
+                Tab(child: Text('PRIMARIA'),),
+                Tab(child: Text('SECUNDARIA'),)
+              ]
+          ),
+          title: Text('Aprender Conectados'),
+        ),
+        body: TabBarView(
+            children: [
+              _container(1),
+              _container(2),
+            ]
+        ),
       ),
     );
   }
 
-  void _onItemTapped(int index){
-    setState(() {
-      _selectedIndex = index;
-      URL = "$URL_BASE${URL_ESPACIO_DIDACTICO}level=${_selectedIndex + 2}";
-      _container();
-    });
-  }
-
-  BottomNavigationBarItem _bottomNavItem(String img, String title) => BottomNavigationBarItem(
-      icon: Image.asset(img,height: 24.0,width: 24.0,),
-      title: Text(title, style: TextStyle(color: Colors.black))
-  );
-
-  Widget _container()=> Container(
+  Widget _container(int seccion)=> Container(
     child: FutureBuilder(
-        future: _getPost(),
+        future: _getPost(seccion),
         builder: (context,snapshot){
           if(snapshot.data == null){
             return Center(child: CircularProgressIndicator());
           }else{
+            print(_lista(snapshot));
             return _lista(snapshot);
           }
         }
     ),
   );
 
-  Future<List<Data>> _getPost() async{
-    print(URL);
-    var response = await http.get(URL);
+  Future<List<Data>> _getPost(int seccion) async{
+    final NURL = '$URL$seccion';
+    print(NURL);
+    var response = await http.get(NURL);
     var decodeJson = jsonDecode(response.body);
     post = Post.fromJson(decodeJson);
     print(decodeJson);
@@ -163,7 +150,7 @@ class _Espacios extends State<Espacios>{
         Navigator.push(context, MaterialPageRoute(builder: (context)=> DetalleWeb(data))); //una pag web comun
         break;
       case 2:
-        //Navigator.push(context, MaterialPageRoute(builder: (context)=> MyWebView(data))); //Video
+      //Navigator.push(context, MaterialPageRoute(builder: (context)=> MyWebView(data))); //Video
         _launchURL(data.link);
         break;
       case 4:
@@ -181,4 +168,7 @@ class _Espacios extends State<Espacios>{
     }
   }
 }
+
+
+
 

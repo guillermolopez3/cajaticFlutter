@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'novedades.dart';
 import 'espacio_didactico.dart';
+import 'aprender_conectados.dart';
 
 class Home extends StatelessWidget{
   @override
@@ -61,6 +62,8 @@ class Home extends StatelessWidget{
         return Navigator.push(context, MaterialPageRoute(builder: (context)=>Novedades()));
       case 1:
         return Navigator.push(context, MaterialPageRoute(builder: (context)=>Espacios()));
+      case 2:
+        return Navigator.push(context, MaterialPageRoute(builder: (context)=>AprenderConectados()));
     }
   }
 }
