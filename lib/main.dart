@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:caja_tic/screens/home.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         primaryColorBrightness: Brightness.dark,
         primaryColor: color_primario,
         primaryColorDark: color_primary_dark,
+        accentColor: color_accent
       ),
       home: Home(),
     );

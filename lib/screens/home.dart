@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'novedades.dart';
-import 'espacio_didactico.dart';
-import 'aprender_conectados.dart';
+import 'package:caja_tic/screens/novedades.dart';
+import 'package:caja_tic/screens/espacio_didactico.dart';
+import 'package:caja_tic/screens/aprender_conectados.dart';
 
 class Home extends StatelessWidget{
   @override
