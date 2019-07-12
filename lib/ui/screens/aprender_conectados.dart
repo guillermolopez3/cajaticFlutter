@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/constantes.dart';
+import '../../utils/constantes.dart';
 import 'package:caja_tic/api/api_post.dart';
 import 'list_builder.dart';
 

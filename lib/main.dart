@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:caja_tic/screens/home.dart';
+import 'package:caja_tic/ui/screens/home.dart';
 import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());

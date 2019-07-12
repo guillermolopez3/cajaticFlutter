@@ -1,4 +1,4 @@
-import 'package:caja_tic/screens/detalle_web.dart';
+import 'package:caja_tic/ui/screens/detalle_web.dart';
 import 'package:flutter/material.dart';
 import 'package:caja_tic/models/post_model.dart';
 import 'package:caja_tic/utils/constantes.dart';

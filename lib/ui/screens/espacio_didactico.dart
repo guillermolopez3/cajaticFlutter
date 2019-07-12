@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utils/constantes.dart';
+import '../../utils/constantes.dart';
 import 'list_builder.dart';
 import 'package:caja_tic/api/api_post.dart';
 
@@ -31,17 +31,17 @@ class _Espacios extends State<Espacios> {
       body: _container(),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          _bottomNavItem('assets/img/ic_inicial.png', 'Inicial'),
-          _bottomNavItem('assets/img/ic_primaria.png', 'Primaria'),
-          _bottomNavItem('assets/img/ic_secundario.png', 'Secundaria'),
-          _bottomNavItem('assets/img/ic_superior.png', 'Superior'),
+          _bottomNavItem('assets/img/ic_inicial.png','assets/img/ic_inicial_selec.png' ,'Inicial'),
+          _bottomNavItem('assets/img/ic_primaria.png','assets/img/ic_primaria_selec.png', 'Primaria'),
+          _bottomNavItem('assets/img/ic_secundario.png','assets/img/ic_secundario_selec.png', 'Secundaria'),
+          _bottomNavItem('assets/img/ic_superior.png','assets/img/ic_superior_selec.png' ,'Superior'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.accessibility, color: Colors.black,),
-              title: Text('Especial', style: TextStyle(color: Colors.black))
+              icon: Icon(Icons.accessibility),
+              title: Text('Especial')
           )
         ],
         currentIndex: _selectedIndex,
-        fixedColor: Colors.deepPurple,
+        fixedColor: color_primario,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
       ),
@@ -56,10 +56,11 @@ class _Espacios extends State<Espacios> {
     });
   }
 
-  BottomNavigationBarItem _bottomNavItem(String img, String title) =>
+  BottomNavigationBarItem _bottomNavItem(String img,String img_active, String title) =>
       BottomNavigationBarItem(
           icon: Image.asset(img, height: 24.0, width: 24.0,),
-          title: Text(title, style: TextStyle(color: Colors.black))
+          activeIcon: Image.asset(img_active,height: 24.0,width: 24.0,),
+          title: Text(title,)
       );
 
   Widget _container() =>

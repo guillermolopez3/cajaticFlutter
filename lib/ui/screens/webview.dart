@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '../models/post_model.dart';
-import '../utils/constantes.dart';
+import '../../models/post_model.dart';
+import '../../utils/constantes.dart';
 import 'dart:async';
 
 class MyWebView extends StatefulWidget{
   final Data data;
+
+  //escuela vicente forestielli
 
   MyWebView(this.data);
 

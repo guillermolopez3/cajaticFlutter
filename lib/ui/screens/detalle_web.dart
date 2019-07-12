@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/post_model.dart';
-import '../utils/constantes.dart';
+import '../../models/post_model.dart';
+import '../../utils/constantes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalleWeb extends StatefulWidget{
