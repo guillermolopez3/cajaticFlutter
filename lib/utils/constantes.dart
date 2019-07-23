@@ -11,6 +11,9 @@ const URL_PDF_VIEW = "https://www.igualdadycalidadcba.gov.ar/CajaTIC/js/web/view
 const URL_ESPACIO_DIDACTICO = 'getPostEspacioDidaConFav?';
 const URL_APRENDER_CONECTADOS = 'getAprenderConectadosConFav?page=1';
 
+//recursos didacticos
+const URL_RD = 'getPostEspacioDidaConFav?level=';
+
 //pagina
 const CANTIDAD_PAGINAS = 15;
 
