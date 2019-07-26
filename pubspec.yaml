@@ -23,8 +23,9 @@ dependencies:
   webview_flutter: ^0.3.9+1
   url_launcher: ^5.0.3
   flutter_pagewise: ^1.2.3
-  cached_network_image: ^0.8.0
+  cached_network_image: ^1.1.1
   shimmer: ^1.0.0
+  flutter_plugin_pdf_viewer: ^1.0.7
 
 dev_dependencies:
   flutter_test:

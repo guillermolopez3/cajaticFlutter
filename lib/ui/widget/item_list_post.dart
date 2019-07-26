@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:caja_tic/models/post_model.dart';
 import 'package:caja_tic/ui/screens/detalle_web.dart';
 import 'package:caja_tic/ui/screens/webview.dart';
+import 'package:caja_tic/ui/widget/pdf_view.dart';
 import 'package:caja_tic/utils/constantes.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -102,8 +103,8 @@ class ItemListPost extends StatelessWidget {
       case 3: //audio
         return;
       case 4: //pdf
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MyWebView(data)));
+        //Navigator.push( context, MaterialPageRoute(builder: (context) => MyWebView(data)));
+        Navigator.push( context, MaterialPageRoute(builder: (context) => PdfView(data.link)));
         return;
       case 5: //general
         return;
