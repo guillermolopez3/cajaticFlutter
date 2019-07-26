@@ -20,10 +20,12 @@ class _MyWebView extends State<MyWebView>{
   Completer<WebViewController> _controller = Completer<WebViewController>();
   String URL="";
 
+  bool _isLoadingPage;
 
   @override
   void initState() {
     definirUrl();
+    _isLoadingPage = true;
   }
 
   @override
@@ -31,16 +33,30 @@ class _MyWebView extends State<MyWebView>{
     // TODO: implement build
     return Scaffold(
         body: SafeArea(
-            child: WebView(
-              initialUrl: URL,
-              javascriptMode: JavascriptMode.unrestricted,
-              onWebViewCreated: (WebViewController wbController){
-                _controller.complete(wbController);
+            child: Stack(
+              children: <Widget>[
+                WebView(
+                  initialUrl: URL,
+                  javascriptMode: JavascriptMode.unrestricted,
+                  onWebViewCreated: (WebViewController wbController){
 
-              },
-              onPageFinished: (String complete){
-                print(complete);
-              },
+                    _controller.complete(wbController);
+
+                  },
+                  onPageFinished: (String complete){
+                    setState(() {
+                      _isLoadingPage = false;
+                    });
+                  },
+                ),
+                _isLoadingPage ? Container(
+                  alignment: FractionalOffset.center,
+                  child: CircularProgressIndicator(),
+                )
+                    : Container(
+                  color: Colors.transparent,
+                ),
+              ],
             )
         )
     );

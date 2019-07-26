@@ -4,7 +4,6 @@ import 'package:caja_tic/ui/widget/shimmer_efect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pagewise/flutter_pagewise.dart';
 import '../../utils/constantes.dart';
-import 'list_builder.dart';
 import 'package:caja_tic/api/api_post.dart';
 import '../../models/post_model.dart';
 
@@ -88,19 +87,6 @@ class _Espacios extends State<Espacios> with SingleTickerProviderStateMixin {
           title: Text(
             title,
           ));
-
-  /*Widget _container() => Container(
-        child: FutureBuilder(
-            future: api.getPost(URL),
-            builder: (context, snapshot) {
-              if (snapshot.data == null) {
-                return Center(child: CircularProgressIndicator());
-              } else {
-                return MyList(snapshot: snapshot);
-              }
-            }),
-      );
-}*/
 
   //segun la seccion en la que este es el level para la url
   int _nivelSeleccionado()

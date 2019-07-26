@@ -1,3 +1,4 @@
+import 'package:caja_tic/ui/widget/item_list_post.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constantes.dart';
 import '../../models/post_model.dart';
@@ -66,7 +67,7 @@ class _NovedadesState extends State<Novedades>{
   Widget _paginacion(){
     return PagewiseListView<Data>(
       pageSize: CANTIDAD_PAGINAS,
-      itemBuilder: this._listItem,
+      itemBuilder: (context,data,_) => ItemListPost(data: data,),
       pageFuture: (pagIndex){
         _pagina_act = pagIndex;
         String pagina = '&page=${pagIndex +1}';
