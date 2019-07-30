@@ -55,19 +55,6 @@ class _AprenderConectadosState extends State<AprenderConectados> {
     );
   }
 
-  Widget _container(String url)=> Container(
-    child: FutureBuilder(
-        future: api.getPost(url),
-        builder: (context,snapshot){
-          if(snapshot.data == null){
-            return Center(child: CircularProgressIndicator());
-          }else{
-            return MyList(snapshot: snapshot,);
-          }
-        }
-    ),
-  );
-
   Widget _paginacion(String url){
     return PagewiseListView<Data>(
       pageSize: CANTIDAD_PAGINAS,

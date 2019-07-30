@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../models/post_model.dart';
@@ -28,6 +30,10 @@ class _MyWebView extends State<MyWebView>{
     _isLoadingPage = true;
   }
 
+  final Set<Factory> gestureRecognizers = [
+    Factory(() => EagerGestureRecognizer()),
+  ].toSet();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -39,13 +45,12 @@ class _MyWebView extends State<MyWebView>{
                   initialUrl: URL,
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (WebViewController wbController){
-
                     _controller.complete(wbController);
-
-                  },
-                  onPageFinished: (String complete){
+                    },
+                  onPageFinished: (valor){
+                    _isLoadingPage = false;
                     setState(() {
-                      _isLoadingPage = false;
+
                     });
                   },
                 ),
@@ -54,6 +59,8 @@ class _MyWebView extends State<MyWebView>{
                   child: CircularProgressIndicator(),
                 )
                     : Container(
+                  height: 1,
+                  width: 1,
                   color: Colors.transparent,
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:caja_tic/ui/screens/detalle_web.dart';
+import 'package:caja_tic/ui/widget/youtube_play.dart';
 import 'package:flutter/material.dart';
 import 'package:caja_tic/models/post_model.dart';
 import 'package:caja_tic/utils/constantes.dart';
@@ -97,8 +98,8 @@ class MyList extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (context)=> DetalleWeb(data))); //una pag web comun
         break;
       case 2:
-        //Navigator.push(context, MaterialPageRoute(builder: (context)=> MyWebView(data))); //Video
-         _launchURL(data.link);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> MyYoutubePlayer(data))); //Video
+         //_launchURL(data.link);
         break;
       case 4:
         Navigator.push(

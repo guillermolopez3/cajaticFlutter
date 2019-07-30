@@ -25,7 +25,7 @@ dependencies:
   flutter_pagewise: ^1.2.3
   cached_network_image: ^1.1.1
   shimmer: ^1.0.0
-  flutter_plugin_pdf_viewer: ^1.0.7
+
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +58,9 @@ flutter:
    - assets/img/ic_primaria_selec.png
    - assets/img/ic_secundario_selec.png
    - assets/img/ic_superior_selec.png
+   - assets/img/acrobat.png
+   - assets/img/audio.png
+   - assets/img/play.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

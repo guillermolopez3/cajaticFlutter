@@ -174,8 +174,6 @@ class _TabRecursos extends State<TabRecursos> {
       loadingBuilder: (context) {
         return _currentPage == 0 ? ShimmerEfx() : CircularProgressIndicator();
       },
-      //noItemsFoundBuilder:(context)=> Text('noItemsFound'),
-      //errorBuilder: (context,ob) =>  Text('error builder ${ob}') ,
     );
   }
 
