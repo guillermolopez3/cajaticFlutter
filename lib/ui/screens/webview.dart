@@ -30,13 +30,10 @@ class _MyWebView extends State<MyWebView>{
     _isLoadingPage = true;
   }
 
-  final Set<Factory> gestureRecognizers = [
-    Factory(() => EagerGestureRecognizer()),
-  ].toSet();
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    print(URL);
     return Scaffold(
         body: SafeArea(
             child: Stack(
@@ -46,6 +43,8 @@ class _MyWebView extends State<MyWebView>{
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (WebViewController wbController){
                     _controller.complete(wbController);
+                    //_controller.completeError((e)=> print(e));
+                    wbController.currentUrl().then((s)=> print(s));
                     },
                   onPageFinished: (valor){
                     _isLoadingPage = false;
@@ -72,7 +71,8 @@ class _MyWebView extends State<MyWebView>{
   //dependiendo si el pdf esta en el host del minis o es una web es la URL que creo
   void definirUrl(){
     var temp_url = widget.data.link;
-    URL = temp_url.startsWith('http')? '$URL_PDF_VIEW$temp_url' : '$URL_PDF_VIEW_MINISTERIO$temp_url';
+    String _url = temp_url.startsWith('http')? '$URL_PDF_VIEW$temp_url' : '$URL_PDF_VIEW_MINISTERIO$temp_url';
+    URL =  Uri.encodeFull(_url); //reemplazo espacios por caracteres
   }
 
 
